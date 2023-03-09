@@ -1,0 +1,133 @@
+ChangeLog
+---------
+
+Oct 6th 2001
+v0.01 - Blockmovement on a non scrolling map implemented.
+
+Oct 7th 2001
+v0.02 - Scrolling map.
+
+Oct 7th 2001
+v0.03 - Fixed width font engine.
+
+Oct 8th 2001
+v0.04 - Window engine with alpha blended background.
+
+Oct 8th 2001
+v0.05 - Menu engine started.
+
+Oct 9th 2001
+v0.06 - Game Modes implemented and Menu selections / callbacks completed.
+
+Oct 9th 2001
+v0.07 - Engine modified to draw different frames from player.bmp depending on
+        which direction the player is moving.
+
+Oct 10th 2001
+v0.08 - Incremental player movement (in preparation for animation frames). 
+        When the player moves into a region where the map needs to scroll it
+        looks really crappy right now because I dont have support for
+        incremental map scrolling implemented. A possible quick hack for this
+        problem might be to delay map scroll update until the player is
+        positioned into the new region.
+
+Oct 10th 2001
+v0.09 - Incremental player and map movement complete. Notes for next few 
+        versions: Implement progress widget (InitMap() now takes signifigantly
+        longer to run.. in the future I will probably have some incremental
+        map loading scheme, but for the mean time i would like to see a little
+        progress dialog =) Implement animation frames (should be pretty easy
+        once drawn). 
+
+Oct 10th 2001
+v0.10 - Player animation frames implemented. East/west frames are kinda ugly
+        might want to change them soon.
+
+Oct 11th 2001
+v0.11 - Added initial support for NPC's. They appear on the screen and will
+        scroll with map. 
+
+Oct 11th 2001
+v0.12 - NPC's move. Not very intelligently nor does it play the animation 
+        frames for NPCs.. gotta wait till v0.13 ;)
+
+Oct 11th 2001
+v0.13 - NPC animation frames implemented.
+
+Oct 12th 2001
+v0.14 - NPC animations fixed. (changed x/y modifiers to floats instead of
+        ints.. remainders were getting dropped which made a large jump at the
+        end of the animation sequence when a high number of movement frames
+        were being used) NPC's and Players can no longer occupy the same tile.
+
+Oct 13th 2001
+v0.15 - Major code cleanup / reworking. Got rid of all Init*() functions and
+        replaced them with Create*() equivilants. Got rid of all global
+        variables (a few static variables still exist.. will get rid of those
+        soon). Created a G_Game structure where all game data is held (map,
+        video, player, npcs, etc). Made the map tiles dynamically allocated.
+        Seperated Core, Map, NPC, Player, Window functions into different
+        files. Moved source files into src/ subdirectory. Split game-todo.txt
+        into BUGS, ChangeLog and TODO files. Added toplevel Makefile. 
+        Moved includes into includes.h moved all defines, structures and
+        function declarations into game.h. Haven't tested things much. Will
+        Probably have to fix a few bugs =)
+
+Oct 13th 2001
+v0.16 - x/y mod change code moved from Draw*() routines to Update*() routines.
+        Player x/y modifiers changed from ints to floats. Initial tile position
+        of NPCs and Player is set to occupied. ProcessEvents and UpdateGame
+        are called only at certain time intervals. DrawGame runs every game
+        loop. (for maximum framerate and a consistent timed gameplay).
+
+Oct 15th 2001
+v0.17 - Window -
+          * Added TextBox widget (some routines not complete, but works)
+      - Player -
+          * Added support for player interaction with NPCs (contact and
+            use functions)
+      - NPC -
+          * Added initial support for NPC script trees.
+          * Moved npcs array to G_Map structure.
+      - Core - 
+          * Added additional mode NPC_INTERACTION. 
+          * Moved arrow key/up down information to G_Game structure. 
+
+Oct 16th 2001
+v0.18 - NPC -
+          * Added support for SCRIPT_PLAYER_MENU and SCRIPT_PLAYER_MSG in
+            script trees.
+
+Oct 17th 2001
+v0.19 - Final version of current branch of engine. I want some more features and will need to make
+        some extensive modifications. I did make a couple bugfixes in this release but nothing
+        really big to mention.
+
+Oct 17th 2001
+v0.20 - Well. I decided to keep working on this branch. I figured that I wouldnt implement things
+        very different then the way I have them now. I just need to incorporate the engine changes
+        I want to make in this branch. I did create a src-skel directory where I started working
+        on things. ANYWAYS, onto the changes in this version =)
+
+        I figured out what was causing my slow map blits.. it wasnt anything code related. It was
+        the format of the tile bitmaps. I converted the bitmaps to indexed vs. rgb and it took
+        the engine from around 20fps barebones (the src-skel version) to 50fps. I guess this will
+        impose a limit on the number of colors that can be used on a single map tile (255.. it
+        might be possible to create a larger pallete with the bitmap file format though). 255
+        *should* be plenty though. For this game anyways.
+
+        I also figured out the nasty little bug in ProcessEvents(). Basicly what was going on is
+        I was reading the game mode before the while(pollevent()) loop. So when 2 events got 
+        queued and the mode was changed by the first event, when processing the second event
+        the mode would still be what it was originally! Anyways, its fixed. I'm feeling good
+        about the future of this game =)
+
+Oct 18th 2001
+v0.21 - Created the G_Sceen structure. Moved some screen related functions into screen.c.
+        Moved memory functions into util.c. Modified a lot of argument lists to functions 
+        (mainly to make things work cleanly with the new G_Screen struct). Did a little bit
+        of house cleaning on the source tree.
+
+Oct 18th 2001
+v0.22 - Multiple tile layers implemented. Player/NPC draw functions moved to DrawMap().
+        Transparency has some issues with the layers.. as tiles use indexed pallettes now.

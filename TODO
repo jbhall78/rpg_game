@@ -1,0 +1,50 @@
+These are the concepts for which I need to write SDL code for:
+(kinda ranked in order of importance)
+
+* = completed
+@ = partially complete
+- = not started
+
+* Player Movement
+* Fonts (for menu options)
+* Different Game Modes (map movement, menu movement, battle screen)
+* Background Tiles with properties (eg. nopass tiles)
+* Translucent Menu Backgrounds
+* Sprites (with animation frames)
+* Different map layers
+
+@ Menu Movement (with repeat.. but not annoyingly)
+@ NPC Movement with player interaction (talk, battle)
+@ Allow support for various resolutions, bit depths and full screen mode.
+
+# Widgets / Other Graphics stuff
+- Progress display window
+- Different font text colors (while utilizing a standard font)
+- Different player colors 
+
+# Map
+- Animated tiles
+- Roof tiles
+- Items that can be found on maps.. they will be placed in player inventory when picked up
+- Boxes on map which contain items
+- Support for loading map from file
+- Map fog (possibly for enemy compounds)
+- Mini map or Overlay map (to track where you are in world/compound)
+
+# Music
+- MIDI or MP3 music tracks (map, city, enemy compound [dungeon])
+- WAV menu sound effects
+- WAV game sound effects (blaster fire, battle start, etc)
+
+# Game Functionality
+- Player vs. NPC battle screen
+- Save/Load Game Configuration
+- Save/Load Game feature
+- Player Inventory screen
+- Player Statistics screen
+- Item / Enemy Library
+- Support for loading / writing XML files with libxml (for save game/map files)
+- Make sure timing works similar on different speed processors
+
+# Related Projects
+- GTK Map / NPC Editor

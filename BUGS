@@ -1,0 +1,15 @@
+Bugs
+----
+
+- = not fixed
+* = probably fixed
+
+- Sometimes menu items don't work properly
+  (to replicate make sure you have moved in all directions, then open the
+   menu and try to choose a menu item)
+- Sometimes a player will get stuck moving in a particular direction
+  (dont know how to replicate it totally but it seems to happen most of the
+   time -- if not all of the time when hitting a corner of a block)
+- Menu titles dont work.
+- OnScreen() always returns TRUE
+- NPC's can move diagonally through objects
